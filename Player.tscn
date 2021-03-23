@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Screen/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 24 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 64, 64 )
+script = ExtResource( 2 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+position = Vector2( -64, -64 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 30.7701, 34.8826 )
+scale = Vector2( 1.01475, 1.01475 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 34.1458, 33.3011 )
+scale = Vector2( 1.01475, 1.01475 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 33.6739, 31.4289 )
+shape = SubResource( 1 )

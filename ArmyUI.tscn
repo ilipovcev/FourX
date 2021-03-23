@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ArmyUI.gd" type="Script" id=1]
+
+[sub_resource type="Theme" id=1]
+
+[node name="ArmyUI" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1.7838
+margin_top = -0.594604
+margin_right = 192.784
+margin_bottom = 63.4054
+theme = SubResource( 1 )
+text = "HP BAR"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
