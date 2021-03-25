@@ -8,6 +8,7 @@ var target_position = Vector2()
 var movedir = Vector2()
 var stats = PlayerStats
 
+
 onready var ray = $RayCast2D
 
 func _ready():
@@ -47,3 +48,13 @@ func get_movedir():
 	
 	if movedir != Vector2.ZERO:
 		ray.cast_to = movedir * title_size / 2
+
+
+
+func _on_ROLLBUTTON_pressed():
+	movedir.x = 1
+	movedir.y = 0
+	print(position)
+	position += ((randi() % 5 + 1)*64) * movedir
+	print(position)
+	target_position = position

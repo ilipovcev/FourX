@@ -16,8 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="FourX"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
-[rendering]
+[autoload]
 
-environment/default_environment="res://default_env.tres"
+PlayerStats="*res://Screen/PlayerStats.tscn"
+
+[display]
+
+window/size/width=1440
+window/size/height=900

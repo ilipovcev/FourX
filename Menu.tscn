@@ -1,13 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menu.gd" type="Script" id=2]
 
 [node name="Menu" type="Node2D"]
-
-[node name="Button" type="Button" parent="."]
-margin_left = 218.0
-margin_top = 53.0
-margin_right = 419.0
-margin_bottom = 129.0
-text = "test"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 2 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Screen/Bad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ArmyUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Screen/DOT.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://WINDOT.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -59,7 +60,7 @@ extents = Vector2( 24, 24 )
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 65536, 0, 0, 65558, 0, 0, 131072, 0, 0, 131094, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196630, 0, 0, 327679, 0, 0, 262152, 0, 0, 262166, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327702, 0, 0, 393216, 0, 0, 393238, 0, 0, 458752, 0, 0, 458774, 0, 0, 524288, 0, 0, 524310, 0, 0, 589824, 0, 0, 589846, 0, 0, 655360, 0, 0, 655382, 0, 0, 720896, 0, 0, 720918, 0, 0, 786432, 0, 0, 786454, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 65536, 0, 0, 65558, 0, 0, 131072, 0, 0, 131094, 0, 0, 196608, 0, 0, 196630, 0, 0, 262144, 0, 0, 262166, 0, 0, 327680, 0, 0, 327702, 0, 0, 393216, 0, 0, 393238, 0, 0, 458752, 0, 0, 458774, 0, 0, 524288, 0, 0, 524310, 0, 0, 589824, 0, 0, 589846, 0, 0, 655360, 0, 0, 655382, 0, 0, 720896, 0, 0, 720918, 0, 0, 786432, 0, 0, 786454, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 64, 256 )
@@ -80,6 +81,10 @@ scale = Vector2( 1.00738, 1.00738 )
 [node name="CollisionShape2D" parent="Player" index="3"]
 show_behind_parent = true
 position = Vector2( 32, 32 )
+
+[node name="WINDOT" parent="." instance=ExtResource( 7 )]
+position = Vector2( 800, 288 )
+collision_layer = 0
 
 [node name="DOT" parent="." instance=ExtResource( 5 )]
 show_behind_parent = true
@@ -108,6 +113,15 @@ margin_left = -23.5
 margin_top = 0.236111
 margin_right = 23.5
 margin_bottom = 40.2361
+
+[node name="ROLLBUTTON" type="Button" parent="."]
+margin_right = 253.0
+margin_bottom = 63.0
+text = "ROLL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="ROLLBUTTON" to="Player" method="_on_ROLLBUTTON_pressed"]
 
 [editable path="Player"]
 
