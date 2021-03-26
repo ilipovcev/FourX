@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 PlayerStats="*res://Screen/PlayerStats.tscn"
+Server="*res://Singletons/Server.gd"
 
 [display]
 
