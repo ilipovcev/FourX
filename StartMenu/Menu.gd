@@ -3,22 +3,18 @@ extends Control
 func _ready():
 	pass
 
-
-func _on_HostButton_pressed():
-	Server.connectServer()
-	get_tree().change_scene("res://Game.tscn")
-	
-
 func _on_JoinButton_pressed():
-	var inputIP = get_node("NinePatchRect/VBoxContainer/InputIP").get_text()
-	var inputPort = get_node("NinePatchRect/VBoxContainer/InputPort").get_text()
+	var inputIP = get_node("NinePatchRect/VBoxContainer/InputIP").get_text();
+	var inputNick = get_node("NinePatchRect/VBoxContainer/InputPort").get_text();
 
 	if inputIP == "":
-		print("Invalid value")
-		return
+		print("Invalid value");
+		return;
 		
-	if inputPort == "":
-		print("Invalid value")
-		return
+	if inputNick == "":
+		print("Invalid value");
+		return;
 
-	
+	Server.connectServer(inputIP, inputNick);
+	get_tree().change_scene("res://Game.tscn");
+
