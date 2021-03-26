@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="FourX"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://StartMenu/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -26,5 +26,5 @@ Server="*res://Singletons/Server.gd"
 
 [display]
 
-window/size/width=1440
-window/size/height=900
+window/size/width=1380
+window/size/height=768
