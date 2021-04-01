@@ -52,7 +52,7 @@ margin_top = 248.0
 margin_right = 370.0
 margin_bottom = 272.0
 hint_tooltip = "Server address"
-text = "192.168.0.159"
+text = "127.0.0.1"
 placeholder_text = "Server address"
 
 [node name="InputPort" type="LineEdit" parent="NinePatchRect/VBoxContainer"]

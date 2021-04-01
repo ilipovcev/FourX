@@ -23,7 +23,6 @@ func _ready():
 	PlayerStats.connect("army_change", self, "set_army")
 	
 
-
 func _on_Timer_timeout():
 	if label != null:
 		label.text = "HP = " +str(PlayerStats.army)

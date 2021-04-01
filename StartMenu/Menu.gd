@@ -16,5 +16,5 @@ func _on_JoinButton_pressed():
 		return;
 
 	Server.connectServer(inputIP, inputNick);
-	get_tree().change_scene("res://Game.tscn");
+	
 

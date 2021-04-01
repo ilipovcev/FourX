@@ -8,7 +8,6 @@ var target_position = Vector2()
 var movedir = Vector2()
 var stats = PlayerStats
 
-
 onready var ray = $RayCast2D
 
 func _ready():
@@ -16,6 +15,7 @@ func _ready():
 	position = position.snapped(Vector2(title_size, title_size))
 	last_position = position
 	target_position = position
+
 
 func _process(delta):
 	#movement
@@ -33,6 +33,7 @@ func _process(delta):
 		get_movedir()
 		last_position = position
 		target_position += movedir * title_size
+
 
 func get_movedir():
 	var LEFT = Input.is_action_pressed("ui_left")
