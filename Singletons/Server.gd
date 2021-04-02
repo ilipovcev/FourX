@@ -4,6 +4,7 @@ extends Node
 const port = 1909;
 var userNick = "Unnamed";
 var player_spawn_point = -1
+var players_done = []
 
 func connectServer(ip, nick):
   var network = NetworkedMultiplayerENet.new()
@@ -13,7 +14,7 @@ func connectServer(ip, nick):
   get_tree().set_network_peer(null)
   get_tree().set_network_peer(network)
 
-  get_tree().change_scene("res://LoadScreen.tscn"); #Смена сцены на загрузочный экран
+  get_tree().change_scene("res://LoadScreen.tscn") #Смена сцены на загрузочный экран
   network.connect("connection_succeeded", self, "_On_connection_succeeded")
   network.connect("connection_failed", self, "_On_connection_failed")
 
@@ -21,17 +22,23 @@ func connectServer(ip, nick):
 func _On_connection_succeeded():
   print("Connection succeeded")
   print("Player ", userNick, " register...")
+  
   rpc_id(1, "RegPlayer", userNick) #Регистрация клиента на сервере
-  get_tree().change_scene("res://Game.tscn") #Смена сцены на игру
 
 #Подтверждение от сервера об успешной регистрации клиента
 remote func OnRegPlayer(pl: Array):
   print("Player #", pl[0], " registered with nickname ", pl[1], ".");
+  get_tree().change_scene("res://Game.tscn") #Смена сцены на игру. Для работы игры заменить на сцену ожидания
+  #get_tree().change_scene("res://Screen/WaitingOtherPlayers.tscn") #Сцена ожидание остальных игркоков
 
 #Не удалось подключиться к серверу, возврат в меню. Нужна сцена с сообщением об ошибке
 func _On_connection_failed():
   get_tree().change_scene("res://StartMenu/Menu.tscn")
   print("Connection failed")
+
+#Сервер запускает игру для вех клиентов
+remote func StartGame():
+  get_tree().change_scene("res://Game.tscn") #Смена сцены на игру
 
 #Соообщение серверу о том, что у игрока изменилось ХП
 func SetArmy(HP):
