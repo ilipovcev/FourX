@@ -3,6 +3,7 @@ extends Node
 #var ip = "25.105.171.34"
 const port = 1909;
 var userNick = "Unnamed";
+var player_spawn_point = -1
 
 func connectServer(ip, nick):
   var network = NetworkedMultiplayerENet.new()
@@ -18,7 +19,7 @@ func connectServer(ip, nick):
 
 
 func _On_connection_succeeded():
-  print("Connection suceeded")
+  print("Connection succeeded")
   print("Player ", userNick, " register...")
   rpc_id(1, "RegPlayer", userNick) #Регистрация клиента на сервере
   get_tree().change_scene("res://Game.tscn") #Смена сцены на игру
@@ -45,3 +46,11 @@ remote func getWinner(playerName):
   print(playerName, " is winner")
   get_tree().set_network_peer(null)
   get_tree().change_scene("res://StartMenu/Menu.tscn")
+
+#Возвращает место где должен появиться игрок. От 1 до 4
+remote func PlayerSpawnPoint(point):
+  player_spawn_point = point
+
+#Если игрок покинул игру
+remote func PlayerLeftGame(player_left_name):
+  print("Player ", player_left_name, " left the game")

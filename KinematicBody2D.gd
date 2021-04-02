@@ -11,6 +11,7 @@ var stats = PlayerStats
 onready var ray = $RayCast2D
 
 func _ready():
+	print("Spawn point: ", Server.player_spawn_point)
 	stats.connect("no_army", self, "queue_free")
 	position = position.snapped(Vector2(title_size, title_size))
 	last_position = position
