@@ -68,6 +68,15 @@ remote func SetPlayerHP(hp):
 func playerWin():
   rpc_id(1, "PlayerWin")
 
+#Игра проигранна
+remote func LooseGame(): 
+  get_tree().set_network_peer(null)
+  get_tree().change_scene("res://StartMenu/Menu.tscn")
+
+#Кто то проиграл
+remote func OnPlayerLoose(player_name, player_id):
+  print(player_name, " loose game")
+
 #Сообщение о том, что игрок победил. Смена сцены на главное меню. Нужна сцена сообщения
 remote func getWinner(playerName):
   print(playerName, " is winner")
