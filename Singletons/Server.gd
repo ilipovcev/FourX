@@ -4,7 +4,8 @@ extends Node
 const port = 1909;
 var userNick = "Unnamed";
 var player_spawn_point = -1
-var players_done = []
+var player_hp
+var player_steps
 
 func connectServer(ip, nick):
   var network = NetworkedMultiplayerENet.new()
@@ -26,8 +27,9 @@ func _On_connection_succeeded():
   rpc_id(1, "RegPlayer", userNick) #Регистрация клиента на сервере
 
 #Подтверждение от сервера об успешной регистрации клиента
-remote func OnRegPlayer(pl: Array):
-  print("Player #", pl[0], " registered with nickname ", pl[1], ".");
+remote func OnRegPlayer(id, name, HP):
+  print("Player #", id, " registered with nickname ", name, ".");
+  player_hp = HP #Здоровье игрока. Её использовать в label
   get_tree().change_scene("res://Game.tscn") #Смена сцены на игру. Для работы игры заменить на сцену ожидания
   #get_tree().change_scene("res://Screen/WaitingOtherPlayers.tscn") #Сцена ожидание остальных игркоков
 
@@ -40,9 +42,27 @@ func _On_connection_failed():
 remote func StartGame():
   get_tree().change_scene("res://Game.tscn") #Смена сцены на игру
 
-#Соообщение серверу о том, что у игрока изменилось ХП
-func SetArmy(HP):
-  rpc_id(1, "PlayerStatsChanged", HP)
+#Вызывать для определения кол-ва ходов
+func IsRoll():
+  rpc_id(1, "IsRoll")
+
+#Возвращает кол-во ходов и устанавливает в переменную player_steps
+remote func SetRoll(steps_number):
+  if steps_number == -1:
+    player_steps = -1
+  player_steps = steps_number
+
+#Вызывать при ходе на клетку с -хп
+func OnDecHP():
+  rpc_id(1, "DecHP")
+
+#Вызывать при ходе на клетку с +хп
+func OnIncHP():
+  rpc_id(1, "IncHP")
+
+#Возвращет значение хп для игрока после хода на клетку
+remote func SetPlayerHP(hp):
+  player_hp = hp
 
 #Соообщение серверу о том, что игрок победил
 func playerWin():
